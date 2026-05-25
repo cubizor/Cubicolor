@@ -32,7 +32,7 @@ Modular color and typography theming library for Java and Minecraft.
 ```gradle
 repositories {
     maven {
-        url 'https://maven.pkg.github.com/Project-Carbonica/Cubicolor'
+        url 'https://maven.pkg.github.com/cubizor/Cubicolor'
         credentials {
             username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
             password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")

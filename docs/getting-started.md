@@ -7,7 +7,7 @@
 ```kotlin
 repositories {
     maven {
-        url = uri("https://maven.pkg.github.com/Project-Carbonica/Cubicolor")
+        url = uri("https://maven.pkg.github.com/cubizor/Cubicolor")
         credentials {
             username = project.findProperty("gpr.user")?.toString() ?: System.getenv("GITHUB_ACTOR")
             password = project.findProperty("gpr.key")?.toString() ?: System.getenv("GITHUB_TOKEN")

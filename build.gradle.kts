@@ -30,7 +30,7 @@ subprojects {
                     pom {
                         name.set("${rootProject.name} - ${project.name}")
                         description.set("Cubicolor - Modern color management library for Minecraft")
-                        url.set("https://github.com/Cubizor/Cubicolor")
+                        url.set("https://github.com/cubizor/Cubicolor")
 
                         licenses {
                             license {
@@ -47,9 +47,9 @@ subprojects {
                         }
 
                         scm {
-                            connection.set("scm:git:git://github.com/Cubizor/Cubicolor.git")
-                            developerConnection.set("scm:git:ssh://github.com/Cubizor/Cubicolor.git")
-                            url.set("https://github.com/Cubizor/Cubicolor")
+                            connection.set("scm:git:git://github.com/cubizor/Cubicolor.git")
+                            developerConnection.set("scm:git:ssh://github.com/cubizor/Cubicolor.git")
+                            url.set("https://github.com/cubizor/Cubicolor")
                         }
                     }
                 }
@@ -58,7 +58,7 @@ subprojects {
             repositories {
                 maven {
                     name = "GitHubPackages"
-                    url = uri("https://maven.pkg.github.com/Project-Carbonica/Cubicolor")
+                    url = uri("https://maven.pkg.github.com/cubizor/Cubicolor")
 
                     credentials {
                         username = System.getenv("GITHUB_ACTOR") ?: findProperty("gpr.user") as String?
