@@ -26,12 +26,6 @@ tasks.test {
     useJUnitPlatform()
 }
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
-    }
-}
-
 tasks.processResources {
     val props = mapOf("version" to version)
     inputs.properties(props)

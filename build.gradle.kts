@@ -11,8 +11,14 @@ subprojects {
     version = rootProject.version
     group = rootProject.group
 
-    // Maven publish yapılandırması
+    apply(plugin = "java")
     apply(plugin = "maven-publish")
+
+    extensions.configure<JavaPluginExtension> {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
+    }
 
     afterEvaluate {
         extensions.configure<PublishingExtension>("publishing") {
