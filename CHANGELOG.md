@@ -1,3 +1,15 @@
+# [1.5.0](https://github.com/cubizor/Cubicolor/compare/v1.4.1...v1.5.0) (2026-05-25)
+
+
+### Bug Fixes
+
+* update URLs in documentation and configuration files to use new organization name ([05f1844](https://github.com/cubizor/Cubicolor/commit/05f1844c909984d4b57bd9fefed421dbf4387868))
+
+
+### Features
+
+* reorganize build.gradle.kts files and apply Java toolchain configuration ([2278fe8](https://github.com/cubizor/Cubicolor/commit/2278fe84092ab07cf08615c6628ec214b53bda48))
+
 ## [1.4.1](https://github.com/cubizor/Cubicolor/compare/v1.4.0...v1.4.1) (2026-02-24)
 
 
