@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/cubizor/Cubicolor/compare/v1.5.0...v1.6.0) (2026-07-24)
+
+
+### Features
+
+* **text:** optional text shadow on theme styles ([d69adf8](https://github.com/cubizor/Cubicolor/commit/d69adf851d09cf4ffc099ca764660e30fc34c078))
+
 # [1.5.0](https://github.com/cubizor/Cubicolor/compare/v1.4.1...v1.5.0) (2026-05-25)
 
 
