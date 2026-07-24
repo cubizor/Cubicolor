@@ -7,17 +7,24 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * Represents a text style with color and decorations.
+ * Represents a text style with color, decorations and an optional text shadow.
  * Platform-agnostic and immutable.
+ *
+ * <p>The shadow is the Minecraft 1.21.4+ text drop-shadow colour. It is ARGB-capable, so a fully
+ * transparent shadow ({@code #00000000}) disables the vanilla shadow entirely — the trick used to
+ * make bright / neon palettes read cleanly. A {@code null} shadow means "unset": the vanilla shadow
+ * (or whatever the surrounding component inherits) is left untouched.
  */
 public class TextStyle {
 
     private final Color color;
     private final Set<TextDecoration> decorations;
+    private final Color shadow;
 
-    private TextStyle(Color color, Set<TextDecoration> decorations) {
+    private TextStyle(Color color, Set<TextDecoration> decorations, Color shadow) {
         this.color = Objects.requireNonNull(color, "Color cannot be null");
         this.decorations = Set.copyOf(decorations);
+        this.shadow = shadow; // nullable — null = shadow unset
     }
 
     /**
@@ -32,6 +39,21 @@ public class TextStyle {
      */
     public Set<TextDecoration> getDecorations() {
         return decorations;
+    }
+
+    /**
+     * Gets the text shadow colour, or {@code null} if this style leaves the shadow unset.
+     * The colour is ARGB-capable; an alpha of 0 (e.g. {@code #00000000}) disables the vanilla shadow.
+     */
+    public Color getShadow() {
+        return shadow;
+    }
+
+    /**
+     * Whether this style sets an explicit text shadow.
+     */
+    public boolean hasShadow() {
+        return shadow != null;
     }
 
     /**
@@ -87,14 +109,21 @@ public class TextStyle {
      * Creates a simple text style with just color
      */
     public static TextStyle of(Color color) {
-        return new TextStyle(color, Set.of());
+        return new TextStyle(color, Set.of(), null);
     }
 
     /**
      * Creates a text style with color and decorations
      */
     public static TextStyle of(Color color, TextDecoration... decorations) {
-        return new TextStyle(color, Set.of(decorations));
+        return new TextStyle(color, Set.of(decorations), null);
+    }
+
+    /**
+     * Creates a text style with color, an optional shadow colour, and decorations.
+     */
+    public static TextStyle of(Color color, Color shadow, Set<TextDecoration> decorations) {
+        return new TextStyle(color, decorations, shadow);
     }
 
     /**
@@ -103,6 +132,7 @@ public class TextStyle {
     public static class Builder {
         private final Color color;
         private final Set<TextDecoration> decorations = EnumSet.noneOf(TextDecoration.class);
+        private Color shadow;
 
         private Builder(Color color) {
             this.color = Objects.requireNonNull(color, "Color cannot be null");
@@ -113,6 +143,15 @@ public class TextStyle {
          */
         public Builder decoration(TextDecoration decoration) {
             decorations.add(decoration);
+            return this;
+        }
+
+        /**
+         * Sets the text shadow colour (ARGB-capable; alpha 0 disables the vanilla shadow).
+         * Pass {@code null} to leave the shadow unset.
+         */
+        public Builder shadow(Color shadow) {
+            this.shadow = shadow;
             return this;
         }
 
@@ -155,7 +194,7 @@ public class TextStyle {
          * Builds the TextStyle
          */
         public TextStyle build() {
-            return new TextStyle(color, decorations);
+            return new TextStyle(color, decorations, shadow);
         }
     }
 
@@ -165,12 +204,13 @@ public class TextStyle {
         if (o == null || getClass() != o.getClass()) return false;
         TextStyle textStyle = (TextStyle) o;
         return color.equals(textStyle.color) &&
-               decorations.equals(textStyle.decorations);
+               decorations.equals(textStyle.decorations) &&
+               Objects.equals(shadow, textStyle.shadow);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(color, decorations);
+        return Objects.hash(color, decorations, shadow);
     }
 
     @Override
@@ -178,6 +218,7 @@ public class TextStyle {
         return "TextStyle{" +
                "color=" + color.toHex() +
                ", decorations=" + decorations +
+               ", shadow=" + (shadow == null ? "unset" : shadow.toHex()) +
                '}';
     }
 }

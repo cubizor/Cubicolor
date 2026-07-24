@@ -49,11 +49,27 @@ dependencies {
       "decorations": ["BOLD", "UNDERLINED"]
     },
     "BODY": {
-      "color": "#FFFFFF"
+      "color": "#FFFFFF",
+      "shadow": "#00000000"
     }
   }
 }
 ```
+
+### Text shadow (optional)
+
+Each role may carry an optional `"shadow"` field — the Minecraft 1.21.4+ text drop-shadow colour.
+It accepts a 6-digit RGB hex or an 8-digit **ARGB** hex, so a fully transparent value
+(`"#00000000"`) disables the vanilla shadow entirely — the trick that makes bright / neon palettes
+read cleanly. Omit the field to leave the shadow untouched (vanilla default).
+
+```json
+"PRIMARY": { "color": "#00D9FF", "shadow": "#00000000", "decorations": [] }
+```
+
+> Only styling that flows through a shadow-aware renderer applies it: `TextStyleAdapter`
+> (cubicolor-bukkit) and cubiloc's `MessageThemeTagResolver`. Older consumers simply ignore the
+> field, so adding `"shadow"` to a theme is backward-compatible.
 
 ## Loading Themes
 

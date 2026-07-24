@@ -3,6 +3,7 @@ package net.cubizor.cubicolor.bukkit;
 import net.cubizor.cubicolor.text.TextStyle;
 import net.cubizor.cubicolor.text.TextDecoration;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.ShadowColor;
 import net.kyori.adventure.text.format.Style;
 
 /**
@@ -33,6 +34,11 @@ public final class TextStyleAdapter {
     public static Style toAdventureStyle(TextStyle textStyle) {
         Style.Builder builder = Style.style()
             .color(BukkitColorAdapter.toTextColor(textStyle.getColor()));
+
+        // Apply the text shadow when the style sets one (ARGB; alpha 0 disables the vanilla shadow)
+        if (textStyle.hasShadow()) {
+            builder.shadowColor(ShadowColor.shadowColor(textStyle.getShadow().toARGB()));
+        }
 
         // Apply decorations
         for (TextDecoration decoration : textStyle.getDecorations()) {

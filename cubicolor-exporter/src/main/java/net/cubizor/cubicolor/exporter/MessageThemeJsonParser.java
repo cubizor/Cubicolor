@@ -109,6 +109,17 @@ public class MessageThemeJsonParser {
         String hexColor = styleObject.get("color").getAsString();
         Color color = colorFactory.hex(hexColor);
 
+        // Parse optional shadow colour (6-digit RGB or 8-digit ARGB, e.g. "#00000000" to disable it)
+        Color shadow = null;
+        if (styleObject.has("shadow")) {
+            String hexShadow = styleObject.get("shadow").getAsString();
+            try {
+                shadow = colorFactory.hex(hexShadow);
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("Invalid shadow color: " + hexShadow, e);
+            }
+        }
+
         // Parse decorations if present
         Set<TextDecoration> decorations = new HashSet<>();
         if (styleObject.has("decorations")) {
@@ -125,7 +136,9 @@ public class MessageThemeJsonParser {
         }
 
         // Build the TextStyle
-        if (decorations.isEmpty()) {
+        if (shadow != null) {
+            return TextStyle.of(color, shadow, decorations);
+        } else if (decorations.isEmpty()) {
             return TextStyle.of(color);
         } else {
             return TextStyle.of(color, decorations.toArray(new TextDecoration[0]));
