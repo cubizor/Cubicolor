@@ -1,0 +1,69 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "net.cubizor.cubicolor",
+    "module": "cubicolor-core",
+    "version": "1.6.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.1.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "cubicolor-core-1.6.0.jar",
+          "url": "cubicolor-core-1.6.0.jar",
+          "size": 8704,
+          "sha512": "ea53e468bf4ca2ca7e8fa58f1ab1414edef67c808ae4150d1101cb9310171e57efcee5e8bfe7d4f98e952efaf547b4d2c8c58733564e00e4dfa364313bd95b70",
+          "sha256": "c5df995e3bf283d26020ee0feda77898f52ff92a6158c658bfa2b70c212e118a",
+          "sha1": "89ad99dd8f60d9cfaf9bfee7abbce04b02fa785a",
+          "md5": "d0d4378f86a414367fba3120556991d6"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "net.cubizor.cubicolor",
+          "module": "cubicolor-api",
+          "version": {
+            "requires": "1.6.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cubicolor-core-1.6.0.jar",
+          "url": "cubicolor-core-1.6.0.jar",
+          "size": 8704,
+          "sha512": "ea53e468bf4ca2ca7e8fa58f1ab1414edef67c808ae4150d1101cb9310171e57efcee5e8bfe7d4f98e952efaf547b4d2c8c58733564e00e4dfa364313bd95b70",
+          "sha256": "c5df995e3bf283d26020ee0feda77898f52ff92a6158c658bfa2b70c212e118a",
+          "sha1": "89ad99dd8f60d9cfaf9bfee7abbce04b02fa785a",
+          "md5": "d0d4378f86a414367fba3120556991d6"
+        }
+      ]
+    }
+  ]
+}

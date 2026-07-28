@@ -1,0 +1,90 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "net.cubizor.cubicolor",
+    "module": "cubicolor-exporter",
+    "version": "1.6.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.1.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "cubicolor-exporter-1.6.0.jar",
+          "url": "cubicolor-exporter-1.6.0.jar",
+          "size": 15999,
+          "sha512": "ec5e76e0eab7d8c1f421e7edf4213c675c637d3f89afa8c956efb751a32f5dbb8a11968108dcee039f9d1d1f03dfa7dfb3b38cd32fe760077068d04dd19b808d",
+          "sha256": "24dd8bac295653d473c62a052d91b3ae3e759f647fc78f4fc21b0708a8a20a8a",
+          "sha1": "d0ee048d3baffd6db78600851b7047b1d46d5972",
+          "md5": "4a474aa07e3fb81c778b2093d2290bcd"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "net.cubizor.cubicolor",
+          "module": "cubicolor-api",
+          "version": {
+            "requires": "1.6.0"
+          }
+        },
+        {
+          "group": "net.cubizor.cubicolor",
+          "module": "cubicolor-core",
+          "version": {
+            "requires": "1.6.0"
+          }
+        },
+        {
+          "group": "net.cubizor.cubicolor",
+          "module": "cubicolor-text",
+          "version": {
+            "requires": "1.6.0"
+          }
+        },
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.10.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cubicolor-exporter-1.6.0.jar",
+          "url": "cubicolor-exporter-1.6.0.jar",
+          "size": 15999,
+          "sha512": "ec5e76e0eab7d8c1f421e7edf4213c675c637d3f89afa8c956efb751a32f5dbb8a11968108dcee039f9d1d1f03dfa7dfb3b38cd32fe760077068d04dd19b808d",
+          "sha256": "24dd8bac295653d473c62a052d91b3ae3e759f647fc78f4fc21b0708a8a20a8a",
+          "sha1": "d0ee048d3baffd6db78600851b7047b1d46d5972",
+          "md5": "4a474aa07e3fb81c778b2093d2290bcd"
+        }
+      ]
+    }
+  ]
+}

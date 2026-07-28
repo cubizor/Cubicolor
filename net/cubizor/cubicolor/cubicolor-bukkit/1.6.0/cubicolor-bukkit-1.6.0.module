@@ -1,0 +1,134 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "net.cubizor.cubicolor",
+    "module": "cubicolor-bukkit",
+    "version": "1.6.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.1.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "net.cubizor.cubicolor",
+          "module": "cubicolor-api",
+          "version": {
+            "requires": "1.6.0"
+          }
+        },
+        {
+          "group": "net.cubizor.cubicolor",
+          "module": "cubicolor-core",
+          "version": {
+            "requires": "1.6.0"
+          }
+        },
+        {
+          "group": "net.cubizor.cubicolor",
+          "module": "cubicolor-text",
+          "version": {
+            "requires": "1.6.0"
+          }
+        },
+        {
+          "group": "net.cubizor.cubicolor",
+          "module": "cubicolor-manager",
+          "version": {
+            "requires": "1.6.0"
+          }
+        },
+        {
+          "group": "net.cubizor.cubicolor",
+          "module": "cubicolor-exporter",
+          "version": {
+            "requires": "1.6.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cubicolor-bukkit-1.6.0.jar",
+          "url": "cubicolor-bukkit-1.6.0.jar",
+          "size": 29691,
+          "sha512": "c465dd63e6d8ad087037481107eafb26efbd3f6bb9e2646a114a4a7feb48f447d27db85098448dec5e5afc79b5c66c8c4c0fb521d3ba094a8bb7025a6d50607b",
+          "sha256": "4cfc2c581f51d665a06ab12b6da0950ad11df42a2c6bd932fdf6f069d289ce42",
+          "sha1": "e5aca39ee66aa8af3de9cd3378555387b3e4fcd6",
+          "md5": "259ba8017718d258e788751c2e7a2829"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "net.cubizor.cubicolor",
+          "module": "cubicolor-api",
+          "version": {
+            "requires": "1.6.0"
+          }
+        },
+        {
+          "group": "net.cubizor.cubicolor",
+          "module": "cubicolor-core",
+          "version": {
+            "requires": "1.6.0"
+          }
+        },
+        {
+          "group": "net.cubizor.cubicolor",
+          "module": "cubicolor-text",
+          "version": {
+            "requires": "1.6.0"
+          }
+        },
+        {
+          "group": "net.cubizor.cubicolor",
+          "module": "cubicolor-manager",
+          "version": {
+            "requires": "1.6.0"
+          }
+        },
+        {
+          "group": "net.cubizor.cubicolor",
+          "module": "cubicolor-exporter",
+          "version": {
+            "requires": "1.6.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cubicolor-bukkit-1.6.0.jar",
+          "url": "cubicolor-bukkit-1.6.0.jar",
+          "size": 29691,
+          "sha512": "c465dd63e6d8ad087037481107eafb26efbd3f6bb9e2646a114a4a7feb48f447d27db85098448dec5e5afc79b5c66c8c4c0fb521d3ba094a8bb7025a6d50607b",
+          "sha256": "4cfc2c581f51d665a06ab12b6da0950ad11df42a2c6bd932fdf6f069d289ce42",
+          "sha1": "e5aca39ee66aa8af3de9cd3378555387b3e4fcd6",
+          "md5": "259ba8017718d258e788751c2e7a2829"
+        }
+      ]
+    }
+  ]
+}

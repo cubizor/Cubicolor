@@ -1,0 +1,60 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "net.cubizor.cubicolor",
+    "module": "cubicolor-api",
+    "version": "1.6.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.1.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "cubicolor-api-1.6.0.jar",
+          "url": "cubicolor-api-1.6.0.jar",
+          "size": 4114,
+          "sha512": "d9a81a4b65421d4abb85d69da9b95eae2bfc470d302cd25209d4b5920da6f87866d4b7df52559b1cbcb8a154618c932524991fcbdbf5df6d1c19b45fa044878f",
+          "sha256": "8df143d6a23f3a815e778a9d03f09ce9193f1706d324fa9bf3679be774f2e2de",
+          "sha1": "ca86ae972708d2ec6cbf630da51f497b63119fbb",
+          "md5": "5faa3e360af31a6c12c238ac6082cfd2"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cubicolor-api-1.6.0.jar",
+          "url": "cubicolor-api-1.6.0.jar",
+          "size": 4114,
+          "sha512": "d9a81a4b65421d4abb85d69da9b95eae2bfc470d302cd25209d4b5920da6f87866d4b7df52559b1cbcb8a154618c932524991fcbdbf5df6d1c19b45fa044878f",
+          "sha256": "8df143d6a23f3a815e778a9d03f09ce9193f1706d324fa9bf3679be774f2e2de",
+          "sha1": "ca86ae972708d2ec6cbf630da51f497b63119fbb",
+          "md5": "5faa3e360af31a6c12c238ac6082cfd2"
+        }
+      ]
+    }
+  ]
+}
