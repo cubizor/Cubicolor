@@ -65,6 +65,15 @@ subprojects {
                         password = System.getenv("GITHUB_TOKEN") ?: findProperty("gpr.key") as String?
                     }
                 }
+
+                // Anonymously readable mirror. GitHub Packages requires a token even for public
+                // packages, which Minecraft servers resolving these libs at runtime cannot supply —
+                // so `publish` also writes a plain Maven layout that CI pushes to the `maven-repo`
+                // branch, served over raw.githubusercontent.com without auth. See PUBLISHING.md.
+                maven {
+                    name = "PublicMirror"
+                    url = uri(rootProject.layout.buildDirectory.dir("maven-repo"))
+                }
             }
         }
     }
