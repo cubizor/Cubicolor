@@ -29,25 +29,27 @@ Modular color and typography theming library for Java and Minecraft.
 
 ### Gradle
 
+Cubicolor is published to Maven Central, so no repository declaration or credentials are needed:
+
 ```gradle
 repositories {
-    maven { url 'https://raw.githubusercontent.com/cubizor/Cubicolor/maven-repo/' }
+    mavenCentral()
 }
 
 dependencies {
-    implementation 'net.cubizor.cubicolor:cubicolor-core:1.0.0'
-    implementation 'net.cubizor.cubicolor:cubicolor-text:1.0.0'      // Optional
-    implementation 'net.cubizor.cubicolor:cubicolor-bukkit:1.0.0'    // Optional
-    implementation 'net.cubizor.cubicolor:cubicolor-exporter:1.0.0'  // Optional
-    implementation 'net.cubizor.cubicolor:cubicolor-manager:1.0.0'   // Optional
+    implementation 'net.cubizor.cubicolor:cubicolor-core:1.6.0'
+    implementation 'net.cubizor.cubicolor:cubicolor-text:1.6.0'      // Optional
+    implementation 'net.cubizor.cubicolor:cubicolor-bukkit:1.6.0'    // Optional
+    implementation 'net.cubizor.cubicolor:cubicolor-exporter:1.6.0'  // Optional
+    implementation 'net.cubizor.cubicolor:cubicolor-manager:1.6.0'   // Optional
 }
 ```
 
-Requires no credentials. Use this repository for anything that resolves Cubicolor **at runtime**
-(for example a Paper plugin declaring it through `MavenLibraryResolver`) — GitHub Packages demands a
-token even for public packages, so a game server cannot read from it.
+This also covers anything resolving Cubicolor **at runtime**, such as a Paper plugin declaring it
+through `MavenLibraryResolver`.
 
-The GitHub Packages coordinates still exist and stay in sync:
+The GitHub Packages coordinates still exist and stay in sync, but require a token even for public
+packages:
 
 ```gradle
 repositories {
@@ -60,6 +62,9 @@ repositories {
     }
 }
 ```
+
+> The `maven-repo` branch mirror is deprecated. It stays online for existing consumers but stops
+> receiving new versions — switch to `mavenCentral()`.
 
 ## Documentation
 

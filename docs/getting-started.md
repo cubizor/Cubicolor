@@ -6,30 +6,24 @@
 
 ```kotlin
 repositories {
-    maven {
-        url = uri("https://maven.pkg.github.com/cubizor/Cubicolor")
-        credentials {
-            username = project.findProperty("gpr.user")?.toString() ?: System.getenv("GITHUB_ACTOR")
-            password = project.findProperty("gpr.key")?.toString() ?: System.getenv("GITHUB_TOKEN")
-        }
-    }
+    mavenCentral()
 }
 
 dependencies {
     // Core functionality
-    implementation("net.cubizor.cubicolor:cubicolor-core:1.0.0")
+    implementation("net.cubizor.cubicolor:cubicolor-core:1.6.0")
 
     // Optional: Text styling
-    implementation("net.cubizor.cubicolor:cubicolor-text:1.0.0")
+    implementation("net.cubizor.cubicolor:cubicolor-text:1.6.0")
 
     // Optional: Bukkit/Minecraft
-    implementation("net.cubizor.cubicolor:cubicolor-bukkit:1.0.0")
+    implementation("net.cubizor.cubicolor:cubicolor-bukkit:1.6.0")
 
     // Optional: JSON theme loading
-    implementation("net.cubizor.cubicolor:cubicolor-exporter:1.0.0")
+    implementation("net.cubizor.cubicolor:cubicolor-exporter:1.6.0")
 
     // Optional: Multi-plugin management
-    implementation("net.cubizor.cubicolor:cubicolor-manager:1.0.0")
+    implementation("net.cubizor.cubicolor:cubicolor-manager:1.6.0")
 }
 ```
 
