@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  # Republishes whatever version gradle.properties currently holds, without going through
+  # semantic-release. Needed to get an already-tagged version onto a newly added repository.
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -15,6 +18,7 @@ permissions:
 jobs:
   build-and-release:
     name: Test & Publish
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -47,46 +51,46 @@ jobs:
           files: '**/build/test-results/**/*.xml'
           check_name: 'Test Results'
 
+      # semantic-release runs the `publishRelease` Gradle task (see .releaserc.json), which pushes
+      # every module to Maven Central and GitHub Packages. Central needs a Portal user token plus a
+      # GPG key; Gradle picks both up from these ORG_GRADLE_PROJECT_* variables.
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MVN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MVN_CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.GPG_PRIVATE_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.GPG_PASSPHRASE }}
         with:
           extra_plugins: |
             @semantic-release/changelog
             @semantic-release/git
             gradle-semantic-release-plugin
 
-      # GitHub Packages demands a token even for public packages, so anything resolving Cubicolor at
-      # runtime (Paper's MavenLibraryResolver on a game server) cannot read it. `publish` also emits a
-      # plain Maven layout into build/maven-repo; mirror it onto the `maven-repo` branch, which
-      # raw.githubusercontent.com then serves anonymously. Additive — old versions are never dropped.
-      - name: Mirror to public Maven repo
-        if: success()
+  manual-publish:
+    name: Publish current version
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      # Central only, not `publishRelease` — GitHub Packages rejects re-uploading a version it
+      # already has, and a manual run is by definition republishing an existing version.
+      - name: Publish to Maven Central
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-          if [ ! -d build/maven-repo ]; then
-            echo "No release published this run — nothing to mirror."
-            exit 0
-          fi
-          remote="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          work="$(mktemp -d)"
-          if git clone --branch maven-repo --single-branch --depth 1 "$remote" "$work" 2>/dev/null; then
-            echo "Existing maven-repo branch checked out."
-          else
-            git clone --depth 1 "$remote" "$work"
-            git -C "$work" checkout --orphan maven-repo
-            git -C "$work" rm -rqf .
-          fi
-          cp -R build/maven-repo/. "$work"/
-          git -C "$work" config user.name "github-actions[bot]"
-          git -C "$work" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git -C "$work" add -A
-          if git -C "$work" diff --cached --quiet; then
-            echo "Public mirror already up to date."
-          else
-            git -C "$work" commit -m "chore(maven-repo): publish $(grep -E '^version' gradle.properties | cut -d= -f2 | tr -d ' ')"
-            git -C "$work" push origin maven-repo
-          fi
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MVN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MVN_CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.GPG_PRIVATE_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.GPG_PASSPHRASE }}
+        run: ./gradlew publishAndReleaseToMavenCentral --no-daemon --stacktrace
