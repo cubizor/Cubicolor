@@ -42,7 +42,9 @@ Portal tokens are generated at <https://central.sonatype.com> under Account → 
 
 ## Signing key
 
-RSA 4096, no expiry, published to `keys.openpgp.org` and `keyserver.ubuntu.com`.
+RSA 4096, no expiry, published to `keys.openpgp.org` and `keyserver.ubuntu.com`. It is shared by
+every Cubizor repository, not specific to Cubicolor — Central binds a key to nothing, it only
+checks that signatures verify against a key published on a keyserver.
 
 ```
 Cubizor (Maven Central signing key) <vulzen@vulzen.dev>
